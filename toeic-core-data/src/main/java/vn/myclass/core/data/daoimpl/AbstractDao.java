@@ -1,7 +1,6 @@
 package vn.myclass.core.data.daoimpl;
 
 import org.hibernate.*;
-import sun.nio.cs.ext.IBM037;
 import vn.myclass.core.common.constant.CoreConstant;
 import vn.myclass.core.common.utils.HibernateUtils;
 import vn.myclass.core.data.dao.GenericDao;

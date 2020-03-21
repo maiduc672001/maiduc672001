@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ListenGuideLineServiceImpl implements ListenGuideLineService {
-    ListenGuideLineDao listenGuideLineDao=new ListenGuideLineimpl();
    /* public Object[] findListenGuideLineByProperties(String property, String sortDirection, String sortExpression, Object value, Integer offset, Integer limmit) {
         Object[] objects=listenGuideLineDao.findByProperty(property,sortDirection,sortExpression,value,offset,limmit);
         List<ListenGuideLineDTO> results=new ArrayList<ListenGuideLineDTO>();

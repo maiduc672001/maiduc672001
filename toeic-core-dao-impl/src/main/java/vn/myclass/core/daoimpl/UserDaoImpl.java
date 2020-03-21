@@ -10,23 +10,29 @@ import vn.myclass.core.data.daoimpl.AbstractDao;
 import vn.myclass.core.persistence.etity.UserEntity;
 
 public class UserDaoImpl extends AbstractDao<Integer, UserEntity> implements UserDao {
-    public UserEntity findUserByUsernameAnhPassword(String name, String password) {
-        UserEntity userEntity = new UserEntity();
-        Session session = HibernateUtils.getSessionFactory().openSession();
-        Transaction transaction = session.beginTransaction();
+    @Override
+    public Object[] checkLogin(String name, String password) {
+        Session session=HibernateUtils.getSessionFactory().openSession();
+        Transaction transaction=session.beginTransaction();
+        boolean isUserExist=false;
+         UserEntity entity=null;
+         String roleName=null;
         try {
-            StringBuilder sql = new StringBuilder("FROM UserEntity WHERE name= :name AND password= :password");
-            Query query = session.createQuery(sql.toString());
-            query.setParameter("name", name);
-            query.setParameter("password", password);
-            userEntity = (UserEntity) query.uniqueResult();
-            transaction.commit();
-        } catch (HibernateException e) {
+            StringBuilder sql=new StringBuilder("FROM UserEntity eu WHERE eu.name= :name AND eu.password= :password");
+            Query query=session.createQuery(sql.toString());
+            query.setParameter("name",name);
+            query.setParameter("password",password);
+            if(query.list().size()>0){
+                isUserExist=true;
+                entity= (UserEntity) query.uniqueResult();
+                roleName=entity.getName();
+            }
+        }catch (HibernateException e){
+
             transaction.rollback();
-            throw e;
-        } finally {
+        }finally {
             session.close();
         }
-        return userEntity;
+        return new Object[]{isUserExist,roleName};
     }
 }
