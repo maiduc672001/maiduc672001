@@ -1,0 +1,2 @@
+insert into user(name, password, fullname, createddate, roleid)  values ('admin','123456','admin',CURRENT_TIMESTAMP,1);
+insert into user(name, password, fullname, createddate, roleid)  values ('nguyenvanduc','123456','nguyenvanduc',CURRENT_TIMESTAMP,2);
