@@ -34,7 +34,6 @@ public class UserServiceImpl implements UserService {
     public UserDTO findById(Integer userId) {
         UserEntity entity=SingletonDaoImpl.getUserDaoInstance().findById(userId);
         UserDTO dto=UserBeanUtil.entityToDTO(entity);
-
         return dto;
     }
 

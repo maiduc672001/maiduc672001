@@ -3,7 +3,7 @@ package vn.myclass.core.web.command;
 import java.util.List;
 
 public class AbstractCommand<T> {
-    private int maxPageItems=20;
+    private int maxPageItems=5;
     private int firstItem=0;
     private int totalItems=0;
     private String sortExpression;

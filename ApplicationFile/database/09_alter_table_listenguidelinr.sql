@@ -1,0 +1,13 @@
+alter table listenguideline modify column title varchar(512) not null ;
+alter table listenguideline modify column image varchar(255) not null ;
+UPDATE listenguideline SET image='Java-Framework.png' WHERE listenguidelineid=1;
+UPDATE listenguideline SET image='Java-Framework.png' WHERE listenguidelineid=2;
+UPDATE listenguideline SET image='Java-Framework.png' WHERE listenguidelineid=3;
+UPDATE listenguideline SET image='Java-Framework.png' WHERE listenguidelineid=4;
+UPDATE listenguideline SET image='Java-Framework.png' WHERE listenguidelineid=5;
+UPDATE listenguideline SET image='Java-Framework.png' WHERE listenguidelineid=6;
+UPDATE listenguideline SET image='Java-Framework.png' WHERE listenguidelineid=7;
+UPDATE listenguideline SET image='Java-Framework.png' WHERE listenguidelineid=8;
+alter table listenguideline modify column content text not null ;
+alter table listenguideline add unique (title);
+alter table listenguideline modify column createddate timestamp not null ;

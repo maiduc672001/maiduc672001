@@ -85,7 +85,7 @@ $('#formImport').submit();
 });
         $('#importData').click(function () {
             $('#urlType').val('import_data');
-            $('#urlType').attr('action','${importExcel}');
+            $('#formImport').attr('action','${importExcel}');
             $('#formImport').prop('enctype',false)
             ;
 $('#formImport').submit();

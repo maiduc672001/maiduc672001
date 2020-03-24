@@ -28,7 +28,7 @@ public class UserDaoImpl extends AbstractDao<Integer, UserEntity> implements Use
             if(query.list().size()>0){
                 isUserExist=true;
                 entity= (UserEntity) query.uniqueResult();
-                roleName=entity.getName();
+                roleName=entity.getRoleEntity().getName();
             }
         }catch (HibernateException e){
 
