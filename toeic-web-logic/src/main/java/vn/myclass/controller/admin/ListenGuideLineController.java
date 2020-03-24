@@ -55,7 +55,7 @@ session.removeAttribute(WebConstant.ALERT);
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ListenGuideLineCommand lineCommand= new ListenGuideLineCommand();
+       /* ListenGuideLineCommand lineCommand= new ListenGuideLineCommand();
         UploadUtils uploadUtils=new UploadUtils();
         ResourceBundle bundle=ResourceBundle.getBundle("ApplicationResources");
         HttpSession session=req.getSession();
@@ -76,7 +76,7 @@ session.removeAttribute(WebConstant.ALERT);
             log.error(e.getMessage(),e);
             session.setAttribute(WebConstant.ALERT,WebConstant.TYPE_ERROR);
             session.setAttribute(WebConstant.MESSAGE_RESPONSE,bundle.getString("label.error"));
-        }
+        }*/
         resp.sendRedirect("/admin-guideline-listen-list.html?urlType=url_list");
     }
 

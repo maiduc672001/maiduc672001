@@ -2,6 +2,7 @@ package vn.myclass.command;
 
 import vn.myclass.core.dto.RoleDTO;
 import vn.myclass.core.dto.UserDTO;
+import vn.myclass.core.dto.UserImportDTO;
 import vn.myclass.core.web.command.AbstractCommand;
 
 import java.util.List;
@@ -13,6 +14,16 @@ public UserCommand(){
     private List<RoleDTO> roles;
     private String confirmPassword;
     private Integer roleId;
+    List<UserImportDTO> userImportDTOS;
+
+    public List<UserImportDTO> getUserImportDTOS() {
+        return userImportDTOS;
+    }
+
+    public void setUserImportDTOS(List<UserImportDTO> userImportDTOS) {
+        this.userImportDTOS = userImportDTOS;
+    }
+
     public String getConfirmPassword() {
         return confirmPassword;
     }

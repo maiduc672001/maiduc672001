@@ -6,6 +6,9 @@
 <c:url var="listUserUrl" value="/admin-user-list.html">
     <c:param name="urlType" value="url_list"></c:param>
 </c:url>
+<c:url value="/admin-user-import.html" var="importUrl">
+<c:param name="urlType" value="show_import_user"/>
+</c:url>
 <html>
 <head>
     <title><fmt:message key="label.user.management" bundle="${lang}"/></title>
@@ -53,7 +56,7 @@
                                                 <span>
                                                     <i class="fa fa-plus-circle bigger-110 purple"></i>
                                                 </span>
-                                                    </a>
+                                                </a>
                                                     <button type="button"
                                                             class="dt-button buttons-html5 btn btn-white btn-primary btn-bold" id="deleteAll" disabled
                                                     data-toggle="<fmt:message key='label.delete.all' bundle='${lang}'/>">
@@ -61,13 +64,13 @@
                                                     <i class="fa fa-trash-o bigger-110 pink"></i>
                                                 </span>
                                                     </button>
-                                                    <%--<a flag="info"
+                                                    <a flag="info"
                                                        class="dt-button buttons-colvis btn btn-white btn-primary btn-bold"
                                                        href="${importUrl}">
                                                 <span>
                                                     <i class="fa fa-file" aria-hidden="true"></i>
                                                 </span>
-                                                    </a>--%>
+                                                    </a>
                                                 </div>
                                             </div>
                                         </div>

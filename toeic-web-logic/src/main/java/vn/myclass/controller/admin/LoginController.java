@@ -49,24 +49,5 @@ ResourceBundle bundle =ResourceBundle.getBundle("ApplicationResources");
                 rd.forward(req, resp);
             }
         }
-        /*try {
-            if (SingletonServiceImpl.getUserServiceInstance().isUserExist(pojo) != null) {
-                if (SingletonServiceImpl.getUserServiceInstance().findRoleByUser(pojo) != null && SingletonServiceImpl.getUserServiceInstance().findRoleByUser(pojo).getRoleDTO() != null) {
-                    if (SingletonServiceImpl.getUserServiceInstance().findRoleByUser(pojo).getRoleDTO().getName().equals(WebConstant.ROLE_ADMIN)) {
-                        resp.sendRedirect("/admin-home.html");
-                    }
-                    else if (SingletonServiceImpl.getUserServiceInstance().findRoleByUser(pojo).getRoleDTO().getName().equals(WebConstant.ROLE_USER)) {
-                        resp.sendRedirect("/home.html");
-                    }
-                }
-            }
-        } catch (NullPointerException e) {
-            req.setAttribute(WebConstant.ALERT, WebConstant.TYPE_ERROR);
-            req.setAttribute(WebConstant.MESSAGE_RESPONSE, "Tên hoặc mật khẩu sai");
-            RequestDispatcher rd = req.getRequestDispatcher("views/web/login.jsp");
-            rd.forward(req, resp);
-        }
-*/
-
     }
 }

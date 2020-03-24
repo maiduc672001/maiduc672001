@@ -1,7 +1,7 @@
 <%@ include file="/common/taglib.jsp" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <c:url var="editUserUrl" value="/ajax-admin-user-edit.html">
-<c:param name="urlType" value="url_edit"/>
+<%--<c:param name="urlType" value="url_edit"/>--%>
 </c:url>
 <c:choose>
     <c:when test="${not empty messageResponse}">
@@ -74,6 +74,7 @@
                         <input type="hidden" name="pojo.userId" value="${item.pojo.userId}"/>
                     </c:if>
                     <input type="hidden" name="crudaction" id="crudactionEdit"/>
+                    <input type="hidden" name="urlType" value="url_edit"/>
                 </form>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal"><fmt:message key="label.close" bundle="${lang}"/></button>

@@ -10,7 +10,6 @@ function bindEventCheckAllCheckBox(id) {
         }else {
             $(this).closest('table').find('input[type=checkbox]').prop('checked', false);
         }
-
     })
 
 }
@@ -29,7 +28,7 @@ if($('input[type=checkbox]:checked').length>0){
 }
 function autoCheckCheckBoxAll(id){
     var totalBox=$('#'+id).closest('table').find('tbody input[type=checkbox]').length;
-    $('#'+id).closest('table').find('tbody input[type=checkbox]').each(function () {
+    $('#'+id).closest('table').find('tbody input[type=checkbox]').click(function () {
     var tableObj=$('#'+id).closest('table');
     $(this).on('change',function () {
 var totalCheck=$(tableObj).find('tbody input[type=checkbox]:checked').length;

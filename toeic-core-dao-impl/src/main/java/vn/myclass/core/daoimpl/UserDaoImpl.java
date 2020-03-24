@@ -9,6 +9,9 @@ import vn.myclass.core.dao.UserDao;
 import vn.myclass.core.data.daoimpl.AbstractDao;
 import vn.myclass.core.persistence.etity.UserEntity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class UserDaoImpl extends AbstractDao<Integer, UserEntity> implements UserDao {
     @Override
     public Object[] checkLogin(String name, String password) {
@@ -34,5 +37,25 @@ public class UserDaoImpl extends AbstractDao<Integer, UserEntity> implements Use
             session.close();
         }
         return new Object[]{isUserExist,roleName};
+    }
+
+    @Override
+    public List<UserEntity> findByUser(List<String> names) {
+        Session session=HibernateUtils.getSessionFactory().openSession();
+        Transaction transaction=session.beginTransaction();
+        List<UserEntity> userEntities=null;
+        try{
+            StringBuilder sql=new StringBuilder("FROM UserEntity ue WHERE ue.name IN (:names)");
+            Query query=session.createQuery(sql.toString());
+            query.setParameterList("names",names);
+            userEntities=query.list();
+            transaction.commit();
+        }catch (HibernateException e){
+            transaction.rollback();
+            throw e;
+        }finally {
+            session.close();
+        }
+        return userEntities;
     }
 }

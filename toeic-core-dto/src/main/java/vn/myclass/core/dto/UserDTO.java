@@ -9,6 +9,15 @@ public class UserDTO implements Serializable {
     private String fullName;
     private Timestamp createdDate;
     private RoleDTO roleDTO;
+    private UserImportDTO userImportDTO;
+
+    public UserImportDTO getUserImportDTO() {
+        return userImportDTO;
+    }
+
+    public void setUserImportDTO(UserImportDTO userImportDTO) {
+        this.userImportDTO = userImportDTO;
+    }
 
     public Integer getUserId() {
         return userId;
