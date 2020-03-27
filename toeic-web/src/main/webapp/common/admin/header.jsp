@@ -35,6 +35,21 @@
 
                 </ul>
                 </li>
+                <c:if test="${not empty login_name}">
+                    <c:url var="logoutUrl" value="/logout.html">
+                        <c:param name="action" value="logout">
+                        </c:param>
+                    </c:url>
+                    <li><fmt:message bundle="${lang}" key="label.hello"></fmt:message>: ${login_name}</li>
+                    <li><a href="${logoutUrl}"><fmt:message key="label.logout" bundle="${lang}"/></a></li>
+                </c:if>
+                <c:if test="${empty login_name}">
+                    <c:url var="loginUrl" value="/login.html">
+                        <c:param name="action" value="login">
+                        </c:param>
+                    </c:url>
+                    <li><a href="${loginUrl}"><fmt:message key="label.login" bundle="${lang}"/></a></li>
+                </c:if>
             </ul>
         </div>
     </div>

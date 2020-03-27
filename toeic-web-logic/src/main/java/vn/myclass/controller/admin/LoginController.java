@@ -2,6 +2,7 @@ package vn.myclass.controller.admin;
 
 import org.apache.log4j.Logger;
 import vn.myclass.command.UserCommand;
+import vn.myclass.core.common.utils.SessionUtil;
 import vn.myclass.core.dto.CheckLogin;
 import vn.myclass.core.dto.UserDTO;
 import vn.myclass.core.service.UserService;
@@ -19,15 +20,22 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ResourceBundle;
 
-@WebServlet("/index.html")
+@WebServlet(urlPatterns = {"/login.html","/logout.html"})
 public class LoginController extends HttpServlet {
     private final Logger logger = Logger.getLogger(this.getClass());
 ResourceBundle bundle =ResourceBundle.getBundle("ResourcesBundle");
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         logger.error("jsp servlet");
-        RequestDispatcher rd = req.getRequestDispatcher("views/web/login.jsp");
-        rd.forward(req, resp);
+        String action =req.getParameter("action");
+        if(action.equals(WebConstant.LOGIN)){
+            RequestDispatcher rd = req.getRequestDispatcher("views/web/login.jsp");
+            rd.forward(req, resp);
+        }else if(action.equals(WebConstant.LOGOUT)){
+            SessionUtil.getInstance().remove(req,WebConstant.LOGIN_NAME);
+            resp.sendRedirect("/home.html");
+        }
+
     }
 
     @Override
@@ -35,6 +43,7 @@ ResourceBundle bundle =ResourceBundle.getBundle("ResourcesBundle");
         UserCommand command = FromUtil.populate(UserCommand.class, req);
         UserDTO pojo = command.getPojo();
         if(pojo!=null) {
+            SessionUtil.getInstance().putValue(req,WebConstant.LOGIN_NAME,pojo.getName());
             CheckLogin checkLogin = SingletonServiceImpl.getUserServiceInstance().checkLogin(pojo.getName(), pojo.getPassword());
             if (checkLogin.isUserExist()) {
                 if (checkLogin.getRoleName().equals(WebConstant.ROLE_ADMIN)) {
