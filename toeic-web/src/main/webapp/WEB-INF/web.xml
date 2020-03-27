@@ -14,4 +14,12 @@
         <filter-name>sitemesh</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+    <servlet>
+        <servlet-name>DisplayImage</servlet-name>
+        <servlet-class>vn.myclass.controller.DisplayImage</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DisplayImage</servlet-name>
+        <url-pattern>/repository/*</url-pattern>
+    </servlet-mapping>
 </web-app>

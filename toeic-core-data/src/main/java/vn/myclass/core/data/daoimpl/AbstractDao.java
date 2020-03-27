@@ -1,5 +1,6 @@
 package vn.myclass.core.data.daoimpl;
 
+import org.apache.log4j.Logger;
 import org.hibernate.*;
 import vn.myclass.core.common.constant.CoreConstant;
 import vn.myclass.core.common.utils.HibernateUtils;
@@ -13,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 public class AbstractDao<ID extends Serializable,T> implements GenericDao<ID,T> {
-
+    private final Logger log=Logger.getLogger(this.getClass());
     private Class<T> persistenceClass;
     public AbstractDao(){
         this.persistenceClass=(Class<T>)((ParameterizedType)getClass().getGenericSuperclass()).getActualTypeArguments()[1];
@@ -34,6 +35,7 @@ public class AbstractDao<ID extends Serializable,T> implements GenericDao<ID,T> 
             transaction.commit();
         }catch (HibernateException e){
             transaction.rollback();
+            log.error(e.getMessage(),e);
             throw e;
         }finally {
             session.close();
@@ -51,6 +53,7 @@ public class AbstractDao<ID extends Serializable,T> implements GenericDao<ID,T> 
             transaction.commit();
         }catch (HibernateException e){
             transaction.rollback();
+            log.error(e.getMessage(),e);
             throw e;
         }finally {
             session.close();
@@ -66,6 +69,7 @@ public class AbstractDao<ID extends Serializable,T> implements GenericDao<ID,T> 
             transaction.commit();
         }catch (HibernateException e){
             transaction.rollback();
+            log.error(e.getMessage(),e);
             throw e;
         }finally {
             session.close();
@@ -83,6 +87,7 @@ public class AbstractDao<ID extends Serializable,T> implements GenericDao<ID,T> 
             }
         }catch (HibernateException e){
             transaction.rollback();
+            log.error(e.getMessage(),e);
             throw e;
         }finally {
             session.close();
@@ -106,14 +111,10 @@ public class AbstractDao<ID extends Serializable,T> implements GenericDao<ID,T> 
         try {
 
             StringBuilder sql=new StringBuilder("from ");
-            sql.append(this.getPersistenceName());
+            sql.append(this.getPersistenceName()).append(" WHERE 1=1 ");
             if(property.size()>0){
                 for (int j = 0; j <params.length ; j++) {
-                    if (j == 0) {
-                        sql.append(" where ").append(params[j]).append("= :" + params[j] + " ");
-                    }else {
-                        sql.append(" and ").append(params[j]).append("= :" + params[j] + " ");
-                    }
+                    sql.append(" and ").append("LOWER("+params[j]+") LIKE :"+params[j]);
                 }
             }
             if(sortDirection!=null&&sortExpression!=null){
@@ -123,7 +124,7 @@ public class AbstractDao<ID extends Serializable,T> implements GenericDao<ID,T> 
             Query query1=session.createQuery(sql.toString());
             if(property.size()>0){
                 for (int j = 0; j <params.length ; j++) {
-                    query1.setParameter(params[j],values[j]);
+                    query1.setParameter(params[j],"%"+values[j]+"%");
                 }
             }
             if(offset!=null&&offset>=0){
@@ -134,26 +135,23 @@ public class AbstractDao<ID extends Serializable,T> implements GenericDao<ID,T> 
             }
             list=query1.list();
             StringBuilder sql2=new StringBuilder("SELECT COUNT(*) FROM ");
-            sql2.append(getPersistenceName());
+            sql2.append(getPersistenceName()).append(" WHERE 1=1 ");
             if(property.size()>0){
                 for (int j = 0; j <params.length ; j++) {
-                    if (j == 0) {
-                        sql2.append(" where ").append(params[j]).append("= :" + params[j] + " ");
-                    }else {
-                        sql2.append(" and ").append(params[j]).append("= :" + params[j] + " ");
-                    }
+                    sql2.append(" and ").append("LOWER("+params[j]+") LIKE :"+params[j]);
                 }
             }
             Query query2=session.createQuery(sql2.toString());
             if(property.size()>0){
                 for (int j = 0; j <params.length ; j++) {
-                    query2.setParameter(params[j],values[j]);
+                    query2.setParameter(params[j],"%"+values[j]+"%");
                 }
             }
             total=query2.list().get(0);
             transaction.commit();
         }catch (HibernateException e){
             transaction.rollback();
+            log.error(e.getMessage(),e);
             throw e;
         }
         finally {
@@ -175,6 +173,7 @@ public class AbstractDao<ID extends Serializable,T> implements GenericDao<ID,T> 
             transaction.commit();
         }catch (HibernateException e){
             transaction.rollback();
+            log.error(e.getMessage(),e);
             throw e;
         }finally {
             session.close();
@@ -195,6 +194,7 @@ public class AbstractDao<ID extends Serializable,T> implements GenericDao<ID,T> 
             transaction.commit();
         }catch (HibernateException e){
             transaction.rollback();
+            log.error(e.getMessage(),e);
             throw e;
         }finally {
             session.close();

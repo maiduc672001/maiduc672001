@@ -58,7 +58,7 @@
                                 <c:if test="${not empty item.pojo.image}">
                                     <c:set var="image" value="/repository/${item.pojo.image}"/>
                                 </c:if>
-                                <img src="${image}" id="viewImage" width="150px" height="150ox">
+                                <img src="${image}" id="viewImage" width="150px" height="150px"/>
                             </div>
                         </div>
                        < <br/>
@@ -69,7 +69,7 @@
                         <div class="form-group">
                             <div class="col-sm-12">
                                 <c:if test="${not empty item.pojo.content}">
-                                    <c:set var="content" value="${item.pojo.content}"/>
+                                  <c:set var="content" value="${item.pojo.content}"/>
                                 </c:if>
                                 <textarea name="pojo.content" cols="80" rows="10" id="ListenGuidelineContent">${content}</textarea>
                             </div>
@@ -88,5 +88,58 @@
         </div>
     </div>
 </div>
+<script>
+    var listenGuideLineId='';
+    <c:if test="${not empty item.pojo.listenGuideLineId}">
+listenGuideLineId=${item.pojo.listenGuideLineId}
+    </c:if>
+    $(document).ready(function () {
+        CKEDITOR.replace('ListenGuidelineContent');
+        validateData();
+$('#uploadImage').change(function () {
+       readURL(this,"viewImage");
+})
+    })
+    function validateData() {
+        $('#formEdit').validate({
+            ignore:[],
+            rules:[],
+            messages:[],
+
+        });
+        $('#title').rules("add",{
+            required:true,
+            messages:{
+                required: '<fmt:message key="label.empty" bundle="${lang}"/>',
+            }
+        })
+        if(listenGuideLineId==''){
+            $('#uploadImage').rules("add",{
+                required:true,
+                messages:{
+                    required: '<fmt:message key="label.empty" bundle="${lang}"/>',
+                }
+            })
+        }
+        $('#ListenGuidelineContent').rules("add",{
+            required:function(){
+              CKEDITOR.instances.ListenGuidelineContent.updateElement();
+            },
+            messages:{
+                required: '<fmt:message key="label.empty" bundle="${lang}"/>',
+            }
+        })
+    }
+    function readURL(input,imageId) {
+if(input.files&&input.files[0]){
+    var reader=new FileReader();
+    reader.onload=function (e) {
+      $('#'+imageId).attr("src",reader.result);
+
+    }
+    reader.readAsDataURL(input.files[0]);
+}
+    }
+</script>
 </body>
 </html>

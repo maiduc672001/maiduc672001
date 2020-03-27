@@ -6,4 +6,5 @@ import vn.myclass.core.persistence.etity.ListenGuideLineEntity;
 
 public class ListenGuideLineimpl extends AbstractDao<Integer, ListenGuideLineEntity> implements ListenGuideLineDao {
 
+
 }

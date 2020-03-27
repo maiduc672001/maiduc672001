@@ -19,10 +19,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ResourceBundle;
 
-@WebServlet("/login.html")
+@WebServlet("/index.html")
 public class LoginController extends HttpServlet {
     private final Logger logger = Logger.getLogger(this.getClass());
-ResourceBundle bundle =ResourceBundle.getBundle("ApplicationResources");
+ResourceBundle bundle =ResourceBundle.getBundle("ResourcesBundle");
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         logger.error("jsp servlet");

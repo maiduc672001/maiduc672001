@@ -16,7 +16,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type='text/javascript' src='<c:url value="/template/admin/js/jquery-2.2.3.min.js" />'></script>
     <script src="<c:url value='/template/admin/assets/js/jquery.2.1.1.min.js' />"></script>
-   <%-- <script src="<c:url value='/template/admin/assets/js/jquery.validate.min.js' />"></script>--%>
+    <script src="<c:url value='/template/admin/assets/js/jquery.validate.min.js' />"></script>
+
+<%--ckeditor--%>
+    <script type="text/javascript" src="<c:url value="/ckeditor/ckeditor.js"/>"></script>
 
     <link rel="stylesheet" href="<c:url value="/template/admin/css/global_admin_style.css"/>">
     <script type="text/javascript" src="<c:url value="/template/admin/js/global_admin_script.js"/>"></script>
@@ -27,8 +30,8 @@
     <%--<script type="text/javascript" src="<c:url value="/ckeditor/ckeditor.js"/>"></script>
 --%>
     <%--sweetalert--%>
-   <%-- <script type='text/javascript' src='<c:url value="/template/admin/sweetalert/sweetalert2.min.js"/>'></script>
-    <link rel="stylesheet" href="<c:url value="/template/admin/sweetalert/sweetalert2.min.css"/>">--%>
+    <script type='text/javascript' src='<c:url value="/template/admin/sweetalert/sweetalert2.min.js"/>'></script>
+    <link rel="stylesheet" href="<c:url value="/template/admin/sweetalert/sweetalert2.min.css"/>">
 
     <%--datatable--%>
     <%--<link href="<c:url value="/template/data-table/media/css/dataTables.bootstrap4_v4.6.1.min.css"/>" rel="stylesheet">

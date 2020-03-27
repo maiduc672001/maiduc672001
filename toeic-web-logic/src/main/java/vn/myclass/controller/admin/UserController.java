@@ -18,6 +18,7 @@ import vn.myclass.core.service.impl.RoleServiceImpl;
 import vn.myclass.core.service.impl.UserServiceImpl;
 import vn.myclass.core.web.common.WebConstant;
 import vn.myclass.core.web.utils.FromUtil;
+import vn.myclass.core.web.utils.RequestUtils;
 import vn.myclass.core.web.utils.SingletonServiceImpl;
 import vn.myclass.core.web.utils.WebCommonUtil;
 
@@ -43,7 +44,7 @@ public class UserController extends HttpServlet {
     private final String VALIDATE_IMPORT = "validate_import";
     private final String LIST_USER_IMPORT = "list_user_import";
     private final String IMPORT_DATA="import_data";
-    ResourceBundle resourceBundle = ResourceBundle.getBundle("ApplicationResources");
+    ResourceBundle resourceBundle = ResourceBundle.getBundle("ResourcesBundle");
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -51,6 +52,7 @@ public class UserController extends HttpServlet {
         UserDTO pojo = command.getPojo();
         if (command.getUrlType() != null && command.getUrlType().equals(WebConstant.URL_LIST)) {
             Map<String, Object> mapProperty = new HashMap<String, Object>();
+            RequestUtils.initSearchBean(req,command);
             Object[] objects = SingletonServiceImpl.getUserServiceInstance().findByproperty(mapProperty, command.getSortDirection(), command.getSortExpression(), command.getFirstItem(), command.getMaxPageItems());
             command.setListResult((List<UserDTO>) objects[1]);
             command.setTotalItems(Integer.parseInt(objects[0].toString()));
@@ -77,13 +79,40 @@ public class UserController extends HttpServlet {
             ;
         } else if (command.getUrlType() != null && command.getUrlType().equals(VALIDATE_IMPORT)) {
             List<UserImportDTO> userImportDTOS = (List<UserImportDTO>) SessionUtil.getInstance().getValue(req, LIST_USER_IMPORT);
-            command.setUserImportDTOS(userImportDTOS);
-            command.setMaxPageItems(3);
+            /*command.setMaxPageItems(3);
+            RequestUtils.initSearchBean(req,command);
             command.setTotalItems(userImportDTOS.size());
+            int fromIndex=command.getFirstItem();
+            if(fromIndex>command.getTotalItems()){
+                fromIndex=0;
+                command.setFirstItem(0);
+            }
+            int toIndex=fromIndex+command.getMaxPageItems();
+            if(toIndex>command.getTotalItems()){
+                toIndex=command.getTotalItems();
+            }
+            command.setUserImportDTOS(userImportDTOS.subList(fromIndex,toIndex));*/
+            command.setUserImportDTOS(returnListUserImport(command,userImportDTOS,req));
             req.setAttribute(WebConstant.LIST_ITEMS, command);
             RequestDispatcher rd = req.getRequestDispatcher("/views/admin/user/importuser.jsp");
             rd.forward(req, resp);
         }
+    }
+
+    private List<UserImportDTO> returnListUserImport(UserCommand command,List<UserImportDTO> userImportDTOS,HttpServletRequest req) {
+        command.setMaxPageItems(3);
+        RequestUtils.initSearchBean(req,command);
+        command.setTotalItems(userImportDTOS.size());
+        int fromIndex=command.getFirstItem();
+        if(fromIndex>command.getTotalItems()){
+            fromIndex=0;
+            command.setFirstItem(0);
+        }
+        int toIndex=fromIndex+command.getMaxPageItems();
+        if(toIndex>command.getTotalItems()){
+            toIndex=command.getTotalItems();
+        }
+        return userImportDTOS.subList(fromIndex,toIndex);
     }
 
     private Map<String, String> buildMapRedirectMessage(ResourceBundle resourceBundle) {
@@ -140,7 +169,7 @@ public class UserController extends HttpServlet {
                     resp.sendRedirect("/admin-user-import-validate.html?urlType=validate_import");
                 }
             }
-            if(command.getUrlType()!=null&&command.getUrlType().equals(IMPORT_DATA)){
+                if(command.getUrlType()!=null&&command.getUrlType().equals(IMPORT_DATA)){
                 List<UserImportDTO> userImportDTOS= (List<UserImportDTO>) SessionUtil.getInstance().getValue(req,LIST_USER_IMPORT);
                 SingletonServiceImpl.getUserServiceInstance().saveUserImport(userImportDTOS);
                 SessionUtil.getInstance().remove(req,LIST_USER_IMPORT);
