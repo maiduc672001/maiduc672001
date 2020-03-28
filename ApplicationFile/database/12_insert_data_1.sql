@@ -1,0 +1,2 @@
+INSERT INTO exercise(name, createddate, type) VALUES ('Bài tập nghe 1', CURRENT_TIMESTAMP, 'listening');
+INSERT INTO exercise(name, createddate, type) VALUES ('Bài tập đọc 1', CURRENT_TIMESTAMP, 'reading');

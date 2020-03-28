@@ -20,7 +20,7 @@ public class DisplayImage extends HttpServlet {
         FileInputStream fin = new FileInputStream(imagesBase + File.separator + relativeImagePath);
         BufferedInputStream bin = new BufferedInputStream(fin);
         BufferedOutputStream bout = new BufferedOutputStream(outStream);
-        int ch =0; ;
+        int ch =0;
         while((ch=bin.read())!=-1)
             bout.write(ch);
         bin.close();

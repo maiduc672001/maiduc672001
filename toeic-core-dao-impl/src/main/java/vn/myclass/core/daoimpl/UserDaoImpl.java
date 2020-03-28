@@ -31,7 +31,6 @@ public class UserDaoImpl extends AbstractDao<Integer, UserEntity> implements Use
                 roleName=entity.getRoleEntity().getName();
             }
         }catch (HibernateException e){
-
             transaction.rollback();
         }finally {
             session.close();

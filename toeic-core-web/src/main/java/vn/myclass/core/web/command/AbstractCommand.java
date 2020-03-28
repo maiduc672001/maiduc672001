@@ -17,6 +17,15 @@ public class AbstractCommand<T> {
     private int page=1;
     private String urlType;
 
+    public int getTotalPage() {
+        return totalPage;
+    }
+
+    public void setTotalPage(int totalPage) {
+        this.totalPage = totalPage;
+    }
+
+    private int totalPage;
     public String getUrlType() {
         return urlType;
     }

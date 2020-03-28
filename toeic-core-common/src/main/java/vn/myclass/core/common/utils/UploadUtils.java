@@ -86,7 +86,11 @@ public class UploadUtils {
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-        return new Object[]{check, fileLocation, path+File.separator+name, mapReturnValue};
+        String fileName="";
+        if(StringUtils.isNotBlank(name)){
+            fileName=path+File.separator+name;
+        }
+        return new Object[]{check, fileLocation,fileName , mapReturnValue};
     }
 
     private void checkAnhCreateFolder(String adress, String path) {

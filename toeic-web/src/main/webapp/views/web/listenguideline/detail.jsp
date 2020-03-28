@@ -12,9 +12,14 @@
     <div class="span9">
         <!--Blog Post-->
         <div class="blog-post">
-            <h2>TIÊU ĐỀ</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-            <a class="btn btn-primary" href="#"><fmt:message key="label.list.back" bundle="${lang}"/></a>
+            <h2>${item.pojo.title}</h2>
+            <p>
+${item.pojo.content}
+            </p>
+            <c:url value="/danh-sach-huong-dan-nghe.html" var="back">
+
+            </c:url>
+            <a class="btn btn-primary" href="${back}"><fmt:message key="label.list.back" bundle="${lang}"/></a>
         </div>
         <!--===============-->
     </div>
