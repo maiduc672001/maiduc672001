@@ -14,6 +14,9 @@
         <pattern>/login*</pattern>
     </decorator>
     <decorator name="product" page="product.jsp">
-        <pattern>/danh-sach</pattern>
+        <pattern>/danh-sach*</pattern>
+    </decorator>
+    <decorator name="product" page="product.jsp">
+        <pattern>/bai-tap*</pattern>
     </decorator>
 </decorators>
