@@ -66,7 +66,6 @@ session.removeAttribute(WebConstant.ALERT);
     private void executeSearchListenGuideLine(HttpServletRequest req, ListenGuideLineCommand lineCommand) {
         Map<String,Object> properties=buildMapProperties(lineCommand);
         RequestUtils.initSearchBean(req,lineCommand);
-
         Object[] objects= SingletonServiceImpl.getListenGuideLineServiceInstance().findListenGuideLineByProperties(properties,lineCommand.getSortDirection(),lineCommand.getSortExpression(),lineCommand.getFirstItem(),lineCommand.getMaxPageItems());
         lineCommand.setListResult((List<ListenGuideLineDTO>) objects[1]);
         lineCommand.setTotalItems(Integer.parseInt(objects[0].toString()));

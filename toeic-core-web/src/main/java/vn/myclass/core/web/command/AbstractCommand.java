@@ -11,7 +11,7 @@ public class AbstractCommand<T> {
     private String[] checkList;
     private List<T> listResult;
     private String crudaction;
-    private String tableId="tableList";
+    private String tableId="tablList";
     protected T pojo;
     private String messageResponse;
     private int page=1;
