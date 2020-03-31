@@ -74,12 +74,12 @@
 
     <div class="span4">
         <img src="img/icon2.png">
-        <h2><fmt:message key="label.exercise.listen" bundle="${lang}"/></h2>
+        <h2><fmt:message key="label.exercise" bundle="${lang}"/></h2>
         <p>
             Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
             aliqua.
         </p>
-        <c:url value="/danh-sach-bai-tap-nghe.html" var="listExercise">
+        <c:url value="/danh-sach-bai-tap.html" var="listExercise">
             <c:param name="pojo.type" value="listening">
             </c:param>
         </c:url>
@@ -88,11 +88,11 @@
 
     <div class="span4">
         <img src="img/icon1.png">
-        <h2>Feature C</h2>
+        <h2><fmt:message key="label.examination" bundle="${lang}"/></h2>
         <p>
             Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante.
         </p>
-        <a href="#">Read More &rarr;</a>
+        <a href="<c:url value="/danh-sach-bai-thi.html"/>">Read More &rarr;</a>
     </div>
 </div>
 

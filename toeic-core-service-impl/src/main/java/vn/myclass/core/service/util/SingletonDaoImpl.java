@@ -12,6 +12,13 @@ public class SingletonDaoImpl {
     private static ExaminationQuestionDaoImpl examinationQuestionDaoImpl=null;
     private static ExerciseDaoImpl exerciseDaoImpl=null;
     private static ExerciseQuestionDaoImpl exerciseQuestionDaoImpl=null;
+    private static ResultDaoImpl resultDaoImpl=null;
+    public static ResultDaoImpl getResultDaoImplInstance(){
+        if(resultDaoImpl==null){
+            resultDaoImpl=new ResultDaoImpl();
+        }
+        return resultDaoImpl;
+    }
     public static UserDaoImpl getUserDaoInstance(){
         if(userDaoImpl==null){
             userDaoImpl=new UserDaoImpl();

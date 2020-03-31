@@ -14,6 +14,14 @@ private static ExaminationQuestionServiceImpl examinationQuestionServiceImpl=nul
 private static ExaminationServiceImpl examinationServiceImpl=null;
 private static ExerciseQuestionServiceImpl exerciseQuestionServiceimpl=null;
 private static ExerciseServiceImpl exerciseServiceImpl=null;
+private static ResultServiceImpl resultServiceImpl=null;
+
+    public static ResultServiceImpl getResultServiceImplInstance(){
+        if(resultServiceImpl==null){
+            resultServiceImpl=new ResultServiceImpl();
+        }
+        return resultServiceImpl;
+    }
     public static UserServiceImpl getUserServiceInstance(){
         if(userServiceImpl==null){
             userServiceImpl=new UserServiceImpl();

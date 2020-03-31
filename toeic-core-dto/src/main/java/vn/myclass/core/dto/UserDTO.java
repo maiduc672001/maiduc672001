@@ -1,6 +1,7 @@
 package vn.myclass.core.dto;
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.List;
 
 public class UserDTO implements Serializable {
     private Integer userId;
@@ -10,6 +11,16 @@ public class UserDTO implements Serializable {
     private Timestamp createdDate;
     private RoleDTO roleDTO;
     private UserImportDTO userImportDTO;
+
+    public List<ResultDTO> getResultDTOS() {
+        return resultDTOS;
+    }
+
+    public void setResultDTOS(List<ResultDTO> resultDTOS) {
+        this.resultDTOS = resultDTOS;
+    }
+
+    private List<ResultDTO> resultDTOS;
 
     public UserImportDTO getUserImportDTO() {
         return userImportDTO;

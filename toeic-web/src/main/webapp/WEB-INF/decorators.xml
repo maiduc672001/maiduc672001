@@ -16,4 +16,10 @@
     <decorator name="product" page="product.jsp">
         <pattern>/danh-sach*</pattern>
     </decorator>
+    <decorator name="product" page="product.jsp">
+        <pattern>/bai-tap*</pattern>
+    </decorator>
+    <decorator name="product" page="product.jsp">
+        <pattern>/bai-thi*</pattern>
+    </decorator>
 </decorators>

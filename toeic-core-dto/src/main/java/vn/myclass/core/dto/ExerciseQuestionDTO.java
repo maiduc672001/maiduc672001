@@ -1,8 +1,9 @@
 package vn.myclass.core.dto;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class ExerciseQuestionDTO {
+public class ExerciseQuestionDTO implements Serializable {
     private Integer exerciseQuestionId;
     private String image;
     private String audio;

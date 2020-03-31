@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@include file="/common/taglib.jsp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<c:url var="urlList" value="/danh-sach-bai-tap-nghe.html">
+<c:url var="urlList" value="/danh-sach-bai-tap.html">
 
 </c:url>
 <html lang="en">
@@ -37,10 +37,10 @@
                         </div>--%>
                         <div class="grid news_desc">
                             <h3>${item.name}</h3>
-                            <%--<c:url var="url" value="/noi-dung-bai-huong-dan-nghe.html">
-                                <c:param name="listenguidelineid" value="${item.listenGuideLineId}"></c:param>
-                            </c:url>--%>
-                            <h4>Posted on Aug 13th, 2013 by <span><a href="#">Làm bài tập nghe</a></span></h4>
+                            <c:url var="detailUrl" value="/bai-tap-thuc-hanh.html">
+                                <c:param name="exerciseId" value="${item.exerciseId}"></c:param>
+                            </c:url>
+                            <h4> <span><a href="${detailUrl}">Làm bài tập nghe</a></span></h4>
                         </div>
                     </div>
                 </c:forEach>

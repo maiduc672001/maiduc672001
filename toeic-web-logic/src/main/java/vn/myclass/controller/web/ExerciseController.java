@@ -21,7 +21,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@WebServlet(urlPatterns = {"/danh-sach-bai-tap-nghe.html"})
+@WebServlet(urlPatterns = {"/danh-sach-bai-tap.html"})
 public class ExerciseController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

@@ -202,5 +202,60 @@ public class AbstractDao<ID extends Serializable,T> implements GenericDao<ID,T> 
         return result;
     }
 
+    @Override
+    public Object[] findByProperty(Map<String, Object> property, String sortExpression, String sortDirection, Integer offset, Integer limit, String whereClause) {
+        List<T> list = new ArrayList<T>();
+        Session session = HibernateUtils.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        Object totalItem = 0;
+        Object[] nameQuery = HibernateUtils.buildNameQuery(property);
+        try {
+            StringBuilder sql1 = new StringBuilder("from ");
+            sql1.append(getPersistenceName()).append(" where 1=1 ").append(nameQuery[0]);
+            if (sortExpression != null && sortDirection != null) {
+                sql1.append(" order by ").append(sortExpression);
+                sql1.append(" " +(sortDirection.equals(CoreConstant.SORT_ASC)?"asc":"desc"));
+            }
+            if (whereClause != null) {
+                sql1.append(whereClause);
+            }
+            Query query1 = session.createQuery(sql1.toString());
+            setParameterToQuery(nameQuery, query1);
+            if (offset != null && offset >= 0) {
+                query1.setFirstResult(offset);
+            }
+            if (limit != null && limit > 0) {
+                query1.setMaxResults(limit);
+            }
+            list = query1.list();
+            StringBuilder sql2 = new StringBuilder("select count(*) from ");
+            sql2.append(getPersistenceName()).append(" where 1=1 ").append(nameQuery[0]);
+            if (whereClause != null) {
+                sql2.append(whereClause);
+            }
+            Query query2 = session.createQuery(sql2.toString());
+            setParameterToQuery(nameQuery, query2);
+            totalItem = query2.list().get(0);
+            transaction.commit();
+        } catch (HibernateException e) {
+            transaction.rollback();
+            log.error(e.getMessage(), e);
+            throw e;
+        } finally {
+            session.close();
+        }
+        return new Object[]{totalItem, list};
+    }
+
+    private void setParameterToQuery(Object[] nameQuery, Query query1) {
+        if (nameQuery.length == 3) {
+            String[] params = (String[]) nameQuery[1];
+            Object[] values = (Object[]) nameQuery[2];
+            for (int i2 = 0; i2 < params.length ; i2++) {
+                query1.setParameter(params[i2], values[i2]);
+            }
+        }
+    }
+
 
 }
