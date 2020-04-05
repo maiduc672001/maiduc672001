@@ -79,19 +79,6 @@ public class UserController extends HttpServlet {
             ;
         } else if (command.getUrlType() != null && command.getUrlType().equals(VALIDATE_IMPORT)) {
             List<UserImportDTO> userImportDTOS = (List<UserImportDTO>) SessionUtil.getInstance().getValue(req, LIST_USER_IMPORT);
-            /*command.setMaxPageItems(3);
-            RequestUtils.initSearchBean(req,command);
-            command.setTotalItems(userImportDTOS.size());
-            int fromIndex=command.getFirstItem();
-            if(fromIndex>command.getTotalItems()){
-                fromIndex=0;
-                command.setFirstItem(0);
-            }
-            int toIndex=fromIndex+command.getMaxPageItems();
-            if(toIndex>command.getTotalItems()){
-                toIndex=command.getTotalItems();
-            }
-            command.setUserImportDTOS(userImportDTOS.subList(fromIndex,toIndex));*/
             command.setUserImportDTOS(returnListUserImport(command,userImportDTOS,req));
             req.setAttribute(WebConstant.LIST_ITEMS, command);
             RequestDispatcher rd = req.getRequestDispatcher("/views/admin/user/importuser.jsp");

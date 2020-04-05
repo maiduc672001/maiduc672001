@@ -10,6 +10,6 @@ public interface ListenGuideLineService {
     Object[] findListenGuideLineByProperties(Map<String,Object> property, String sortDirection, String sortExpression, Integer offset, Integer limmit);
     ListenGuideLineDTO findByListenGuideLineId(String property,Integer Id);
    void saveListenGuideline(ListenGuideLineDTO dto) throws ConstraintViolationException;
-    public ListenGuideLineDTO updateListenGuideline(ListenGuideLineDTO dto);
+   ListenGuideLineDTO updateListenGuideline(ListenGuideLineDTO dto);
     Integer delete(List<Integer> ids);
 }

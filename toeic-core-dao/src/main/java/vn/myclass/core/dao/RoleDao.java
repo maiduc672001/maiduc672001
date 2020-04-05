@@ -7,5 +7,4 @@ import java.util.List;
 
 public interface RoleDao extends GenericDao<Integer, RoleEntity> {
     List<RoleEntity> findByRoles(List<String> roles);
-
 }

@@ -74,7 +74,7 @@ $('#formUrl').submit();
     alert("Bạn chưa chọn đáp án nào cả!")
 }
         })
-        $('#btnConfirm').click(function () {
+        $('#btnAgain').click(function () {
             var exerciseid=$('#exerciseId').val();
             window.location="/bai-tap-thuc-hanh.html?page="+startPage+"&exerciseId="+exerciseid+"";
         })

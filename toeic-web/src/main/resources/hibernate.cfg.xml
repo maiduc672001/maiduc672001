@@ -20,6 +20,6 @@
         <mapping class="vn.myclass.core.persistence.etity.ExerciseEntity"/>
         <mapping class="vn.myclass.core.persistence.etity.ExerciseQuestionEntity"/>
         <mapping class="vn.myclass.core.persistence.etity.ResultEntity"/>
-
+        <mapping class="vn.myclass.core.persistence.etity.NewModelEntity"/>
     </session-factory>
 </hibernate-configuration>
